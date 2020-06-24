@@ -2,22 +2,20 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
-const config = require('config');
+const config = require("config");
 const app = express();
 
-// Bodyparser Middleware
 app.use(express.json());
 
 app.use(cors());
 
-//DB Config
-const db = config.get('mongoURI');
+const db = config.get("mongoURI");
 
 // Connect to Mongo
 mongoose
   .connect(db, {
     useNewUrlParser: true,
-    useCreateIndex: true
+    useCreateIndex: true,
   })
   .then(() => console.log("MongoDB connected..."))
   .catch(err => console.log(err));

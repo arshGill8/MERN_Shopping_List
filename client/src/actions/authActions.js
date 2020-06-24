@@ -8,7 +8,7 @@ import {
   LOGIN_FAIL,
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
-  REGISTER_FAIL
+  REGISTER_FAIL,
 } from "./types";
 
 // Check token & load user
@@ -22,13 +22,13 @@ export const loadUser = () => (dispatch, getState) => {
     .then(res =>
       dispatch({
         type: USER_LOADED,
-        payload: res.data
+        payload: res.data,
       })
     )
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({
-        type: AUTH_ERROR
+        type: AUTH_ERROR,
       });
     });
 };
@@ -39,8 +39,8 @@ export const register = ({ name, email, password }) => dispatch => {
   // Headers
   const config = {
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   };
 
   // Request body
@@ -51,7 +51,7 @@ export const register = ({ name, email, password }) => dispatch => {
     .then(res =>
       dispatch({
         type: REGISTER_SUCCESS,
-        payload: res.data
+        payload: res.data,
       })
     )
     .catch(err => {
@@ -59,7 +59,7 @@ export const register = ({ name, email, password }) => dispatch => {
         returnErrors(err.response.data, err.response.status, "REGISTER_FAIL")
       );
       dispatch({
-        type: REGISTER_FAIL
+        type: REGISTER_FAIL,
       });
     });
 };
@@ -69,8 +69,8 @@ export const login = ({ email, password }) => dispatch => {
   // Headers
   const config = {
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   };
 
   // Request body
@@ -81,7 +81,7 @@ export const login = ({ email, password }) => dispatch => {
     .then(res =>
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: res.data
+        payload: res.data,
       })
     )
     .catch(err => {
@@ -89,7 +89,7 @@ export const login = ({ email, password }) => dispatch => {
         returnErrors(err.response.data, err.response.status, "LOGIN_FAIL")
       );
       dispatch({
-        type: LOGIN_FAIL
+        type: LOGIN_FAIL,
       });
     });
 };
@@ -97,7 +97,7 @@ export const login = ({ email, password }) => dispatch => {
 // Logout User
 export const logout = () => {
   return {
-    type: LOGOUT_SUCCESS
+    type: LOGOUT_SUCCESS,
   };
 };
 
@@ -109,8 +109,8 @@ export const tokenConfig = getState => {
   //Headers
   const config = {
     headers: {
-      "Content-type": "application/json"
-    }
+      "Content-type": "application/json",
+    },
   };
 
   // If token, add to headers
